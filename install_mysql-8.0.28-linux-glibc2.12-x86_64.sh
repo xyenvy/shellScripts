@@ -27,7 +27,7 @@ check(){
 	
 	# 判断/usr/local/mysql目录是否存在，存在则exit
 	if [ -e /usr/local/mysql ];then
-		${color}"mysql已经安装，安装失败!"${end}
+		${color}"mysql已经安装,安装失败!"${end}
 		exit
 	fi
 	# 下载二进制程序包	
