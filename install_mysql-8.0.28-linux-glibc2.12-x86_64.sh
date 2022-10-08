@@ -31,7 +31,7 @@ check(){
 		exit
 	fi
 	# 下载二进制程序包	
-	wget https://cdn.mysql.com/archives/mysql-8.0/mysql-8.0.28-linux-glibc2.12-x86_64.tar.xz
+	wget https://cdn.mysql.com/archives/mysql-8.0/mysql-8.0.28-linux-glibc2.12-x86_64.tar.xz || ｛ echo '下载失败'; exit; }
 	
 	# 判断二进制程序包是否存在
 	if [ ! -e ${MYSQL_VERSION} ];then
