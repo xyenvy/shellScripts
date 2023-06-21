@@ -17,13 +17,32 @@ clean_unused_docker_images(){
   echo -e "${GREEN}删除状态：····················[OK]${NC}"
 }
 
+mem_usage(){
+  # 获取当前内存使用率
+  mem_usage=$(free | awk 'NR==2{printf "%.2f\n", $3*100/$2 }')
+
+  # 设置阈值为85%
+  threshold=85
+
+  # 检查内存使用率是否超过阈值
+  if (( $(echo "$mem_usage > $threshold" | bc -l) )); then
+      echo "内存使用率已超过${threshold}%。当前使用率：${mem_usage}%"
+      # 在这里可以添加你希望执行的操作，比如发送警报或执行一些清理操作
+  else
+      echo "内存使用率正常。当前使用率：${mem_usage}%"
+  fi
+}
+
+
+
 while true; do
     # 显示菜单选项
     echo -e "${RED}=============== 运维菜单 ===============${NC}"
     echo -e "${GREEN}1. 清理2天前拉取，未使用的Docker镜像${NC}"
     echo -e "${GREEN}2. 查看磁盘空间${NC}"
     echo -e "${GREEN}3. 查看进程列表${NC}"
-    echo -e "${GREEN}4. 退出${NC}"
+    echo -e "${GREEN}4. 查看当前主机内存使用百分比${NC}"
+    echo -e "${GREEN}20. 退出${NC}"
     echo -e "${RED}========================================${NC}"
     
     # 读取用户输入
@@ -41,9 +60,13 @@ while true; do
             ;;
         3)
             echo "进程列表："
-            ps aux  # 示例命令，查看进程列表
+            ps aux  # 示例命令，查看进程列
             ;;
         4)
+            echo "当前主机内存使用百分比："
+            mem_usage
+            ;;
+        20)
             echo "退出运维菜单"
             break  # 退出循环，结束脚本执行
             ;;
