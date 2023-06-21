@@ -52,26 +52,27 @@ while true; do
     case $choice in
         1)
             # 清理2天前拉取，未使用的镜像
+            echo -e "${GREEN}正在清理两天前拉取并未使用的Docker镜像${NC}"
             clean_unused_docker_images
             ;;
         2)
-            echo "磁盘空间："
+            echo -e "${RED}磁盘空间:${NC}"
             df -h  # 示例命令，查看磁盘空间
             ;;
         3)
-            echo "进程列表："
+            echo -e "${GREEN}进程列表:${NC}"
             ps aux  # 示例命令，查看进程列
             ;;
         4)
-            echo "当前主机内存使用百分比："
+            echo -e "${GREEN}当前主机内存使用百分比：${NC}"
             mem_usage
             ;;
         20)
-            echo "退出运维菜单"
+            echo -e "${GREEN}即将退出运维菜单${NC}"
             break  # 退出循环，结束脚本执行
             ;;
         *)
-            echo "无效的选项，请重新输入"
+            echo -e "${RED}无效的选项，请重新输入:${NC}"
             ;;
     esac
     
