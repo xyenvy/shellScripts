@@ -26,10 +26,10 @@ mem_usage(){
 
   # 检查内存使用率是否超过阈值
   if (( $(echo "$mem_usage > $threshold" | bc -l) )); then
-      echo "内存使用率已超过${threshold}%。当前使用率：${mem_usage}%"
+      echo -e "${RED}内存使用率已超过${threshold}%。当前使用率：${mem_usage}%${NC}"
       # 在这里可以添加你希望执行的操作，比如发送警报或执行一些清理操作
   else
-      echo "内存使用率正常。当前使用率：${mem_usage}%"
+      echo -e "${GREEN}内存使用率正常。当前使用率：${mem_usage}%${NC}"
   fi
 }
 
